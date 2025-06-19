@@ -3,8 +3,8 @@ session_start(); // Start session to store login info
 
 
 // Database connection
-//$conn = new mysqli("localhost", "root", "", "daus");
-$conn = new mysqli("localhost", "root", "", "daus");
+require_once "db_connect.php";
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -15,6 +15,7 @@ $login_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
+    
 
     // Debug: Show input values
     echo "<pre>";
@@ -39,6 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['userType'] = $row['userType'];
         $_SESSION['icnumber'] = $row['icnumber'];          
         $_SESSION['fullname'] = $row['fullname'];     
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['firstname'] = $row['firstname'];
+        $_SESSION['lastname'] = $row['lastname'];   
+
 
 
         // Debug: Show retrieved values

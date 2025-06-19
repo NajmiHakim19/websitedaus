@@ -2,8 +2,8 @@
 session_start();
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
+require_once "db_connect.php";
+$firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
 
 if ($conn->connect_error) {
@@ -61,8 +61,7 @@ $conn->close();
 </head>
 <body>
 <header class="nav-container">
-<div class="logo">
-    Hi <?php echo htmlspecialchars($username); ?>
+<div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
 </div>
     <nav>
         <ul class="nav-links">
