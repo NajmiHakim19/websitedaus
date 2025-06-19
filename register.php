@@ -118,8 +118,8 @@ $conn->close();
         <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="index.php" class="active">Login</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Login</a></li>
                 <li><a href="register.php" class="active">Register</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
