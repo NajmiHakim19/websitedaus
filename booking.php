@@ -3,8 +3,6 @@ session_start();
 
 // Database connection
 $conn = new mysqli("localhost", "web40", "web40", "daus");
-// $conn = new mysqli("localhost", "root", "", "daus");
-
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -82,8 +80,8 @@ $conn->close();
         <div class="form-group">
             <label>Preferred Doctor:</label>
             <select name="doctor">
-                <option value="1">1. Dr. dknaoan</option>
-                <option value="2">2. Dr. oihoerh</option>
+                <option value="1">1. Dr. Aisyah</option>
+                <option value="2">2. Dr. Firdaus</option>
             </select>
         </div>
         <div class="form-group">

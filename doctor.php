@@ -1,30 +1,44 @@
 <?php
+session_start();
+
+// Check if doctor is logged in
+if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
+    header("Location: login.php");
+    exit();
+}
+
+$doctorName = $_SESSION['username']; // assuming this matches doctor_name in assign_doctor table
+
 // Database connection
 $conn = new mysqli("localhost", "web40", "web40", "daus");
-// $conn = new mysqli("localhost", "root", "", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle form submission
-$submission_message = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $conn->real_escape_string($_POST['name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $message = $conn->real_escape_string($_POST['message']);
+// Fetch appointments assigned to this doctor
+$sql = "
+    SELECT ab.id, ab.fullname, ab.icnumber, ab.date, ab.time, ab.concern, ad.assigned_at
+    FROM assign_doctor ad
+    JOIN appointment_bookings ab ON ad.appointment_id = ab.id
+    WHERE ad.doctor_name = ?
+    ORDER BY ab.date DESC, ab.time ASC
+";
 
-    $sql = "INSERT INTO contact_submissions (name, email, message) VALUES ('$name', '$email', '$message')";
-    
-    if ($conn->query($sql) === TRUE) {
-        $submission_message = "Thank you for your message!";
-    } else {
-        $submission_message = "Error: " . $conn->error;
-    }
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $doctorName);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$appointments = [];
+if ($result && $result->num_rows > 0) {
+    $appointments = $result->fetch_all(MYSQLI_ASSOC);
 }
 
+$stmt->close();
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +54,7 @@ $conn->close();
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php">Login</a></li>
+                <li><a href="login.php" class="active">Login</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
             </ul>
@@ -49,29 +63,41 @@ $conn->close();
     </header>
 
     <section id="home" class="hero">
-        <h1>doctor</h1>
+        <h1>Doctor</h1>
         <p>Hi, I'm MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, UTM Student learning to become web developer creating responsive and user-friendly websites.</p>
-        <a href="#projects" class="cta-button">View My Work</a>
 
-        <h2>Contact Me</h2>
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="contact-form">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
-        <?php if (!empty($submission_message)): ?>
-            <p class="submission-message"><?php echo $submission_message; ?></p>
-        <?php endif; ?>
+        <h2>Appointment Details</h2>
+<?php if (!empty($appointments)): ?>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>NRIC</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Purpose</th>
+                <th>Assigned At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($appointments as $app): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($app['id']); ?></td>
+                    <td><?php echo htmlspecialchars($app['fullname']); ?></td>
+                    <td><?php echo htmlspecialchars($app['icnumber']); ?></td>
+                    <td><?php echo htmlspecialchars($app['date']); ?></td>
+                    <td><?php echo htmlspecialchars($app['time']); ?></td>
+                    <td><?php echo htmlspecialchars($app['concern']); ?></td>
+                    <td><?php echo htmlspecialchars($app['assigned_at']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>No appointments assigned to you.</p>
+<?php endif; ?>
+
     </section>
 
     <footer>

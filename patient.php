@@ -1,7 +1,6 @@
 <?php
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
-//$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "web40", "web40", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -40,10 +39,11 @@ $conn->close();
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="booking.php">Booking Appointment</a></li>
+                <li><a href="login.php" class="active">Login</a></li>
+                <li><a href="booking.php" class="active">Booking Appointment</a></li>
+                <li><a href="mybooking.php" class="active">Your Appointment</a></li>
                 <li><a href="about.php">About Me</a></li>
-                <li><a href="informationHub.php">informationHub</a></li>
+                <li><a href="projects.php">Projects</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>

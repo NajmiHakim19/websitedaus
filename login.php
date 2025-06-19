@@ -2,8 +2,7 @@
 session_start(); // Start session to store login info
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
-//$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "web40", "web40", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -36,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
         $_SESSION['userType'] = $row['userType'];
+        $_SESSION['icnumber'] = $row['icnumber']; 
 
         // Debug: Show retrieved values
         echo "<pre>";

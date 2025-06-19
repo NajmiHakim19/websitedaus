@@ -118,8 +118,8 @@ $conn->close();
         <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="index.php">Login</a></li>
+                <li><a href="index.php" class="active">Home</a></li>
+                <li><a href="index.php" class="active">Login</a></li>
                 <li><a href="register.php" class="active">Register</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
@@ -131,7 +131,7 @@ $conn->close();
     <section class="hero">
         <h1>Register</h1>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="contact-form">
-    <h2>Register as a New Guest</h2>
+    <h2>Register as a New Patient</h2>
 
     <div class="form-group">
         <label for="firstname">First Name:</label>
