@@ -1,6 +1,7 @@
 <?php
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
+//$conn = new mysqli("localhost", "root", "", "daus");
+$conn = new mysqli("localhost", "web40", "web40", "daus");
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 

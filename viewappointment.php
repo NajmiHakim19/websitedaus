@@ -1,5 +1,6 @@
 <?php
 session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 // Debug: Show session info
 echo "<pre>DEBUG: SESSION\n";
@@ -58,7 +59,7 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+        <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
@@ -92,7 +93,7 @@ $conn->close();
     <tbody>
     <?php foreach ($appointments as $appointment): ?>
         <tr>
-            <form action="assign_doctor.php" method="POST" onsubmit="return setDoctorUsernameOnSubmit(this);">
+            <form action="assign_doctor.php" method="POST" class="doctor-form">
                 <td><?php echo htmlspecialchars($appointment['id']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
@@ -102,10 +103,8 @@ $conn->close();
                 <td>
                     <select name="doctor" required>
                         <option value="">-- Select Doctor --</option>
-                        <option value="Dr. Aisyah">Dr. Aisyah</option>
                         <option value="Dr. Firdaus">Dr. Firdaus</option>
                     </select>
-                    <input type="hidden" name="username" id="username-<?php echo $appointment['id']; ?>">
                     <input type="hidden" name="appointment_id" value="<?php echo $appointment['id']; ?>">
                     <button type="submit" class="save-button">Save</button>
                 </td>
@@ -131,33 +130,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>
     </footer>
-
-    <script>
-function setDoctorUsernameOnSubmit(form) {
-    const doctorMap = {
-        "Dr. Aisyah": "aisyah",
-        "Dr. Firdaus": "daus"
-    };
-
-    const doctorSelect = form.querySelector('select[name="doctor"]');
-    const usernameInput = form.querySelector('input[name="username"]');
-
-    const selectedDoctor = doctorSelect.value;
-    const mappedUsername = doctorMap[selectedDoctor] || "";
-
-    usernameInput.value = mappedUsername;
-
-    // Optional: prevent submission if username is missing
-    if (!mappedUsername) {
-        alert("Please select a valid doctor.");
-        return false;
-    }
-
-    return true; // allow form to submit
-}
-</script>
-
-
     <script src="script.js"></script>
 </body>
 </html>

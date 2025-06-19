@@ -1,6 +1,7 @@
 <?php
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
+//$conn = new mysqli("localhost", "root", "", "daus");
+$conn = new mysqli("localhost", "web40", "web40", "daus");
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
@@ -22,13 +23,11 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-    <div class="logo">
-    Hi <?php echo htmlspecialchars($username); ?>
+    <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="viewappointment.php" class="active">Login</a></li>
+                <li><a href="viewappointment.php" class="active">View Appointment</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
             </ul>

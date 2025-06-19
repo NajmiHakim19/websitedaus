@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 // Fetch user data for prefill
 $prefill_fullname = "";
-$prefill_ic = "";
+$prefill_icnumber = "";
 if (isset($_SESSION['username'])) {
     $username = $conn->real_escape_string($_SESSION['username']);
     $user_query = "SELECT * FROM users WHERE username='$username'";
@@ -20,27 +20,26 @@ if (isset($_SESSION['username'])) {
     if ($user_result && $user_result->num_rows === 1) {
         $user = $user_result->fetch_assoc();
         $prefill_fullname = htmlspecialchars($user['firstname'] . ' ' . $user['lastname']);
-        $prefill_ic = htmlspecialchars($user['icnumber']);
+        $prefill_icnumber = htmlspecialchars($user['icnumber']);
     }
 }
 
 // Handle appointment booking submission
 $submission_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $location = $conn->real_escape_string($_POST['location'] ?? 'Gleneagles Hospital Johor');
     $doctor = $conn->real_escape_string($_POST['doctor']);
     $concern = $conn->real_escape_string($_POST['concern']);
     $date = $conn->real_escape_string($_POST['date']);
     $time = $conn->real_escape_string($_POST['time']);
     $salutation = $conn->real_escape_string($_POST['salutation']);
     $fullname = $conn->real_escape_string($_POST['fullname']);
-    $ic = $conn->real_escape_string($_POST['ic']);
+    $icnumber = $conn->real_escape_string($_POST['icnumber']);
     $phone = $conn->real_escape_string($_POST['phone']);
     $email = $conn->real_escape_string($_POST['email'] ?? '');
     $specialty = $conn->real_escape_string($_POST['specialty'] ?? '');
 
-    $sql = "INSERT INTO appointment_bookings (location, doctor, specialty, concern, date, time, salutation, fullname, ic, phone)
-            VALUES ('$location', '$doctor', '$specialty', '$concern', '$date', '$time', '$salutation', '$fullname', '$ic', '$phone')";
+    $sql = "INSERT INTO appointment_bookings (doctor, specialty, concern, date, time, salutation, fullname, icnumber, phone)
+            VALUES ('$doctor', '$specialty', '$concern', '$date', '$time', '$salutation', '$fullname', '$icnumber', '$phone')";
 
     if ($conn->query($sql) === TRUE) {
         $submission_message = "Your appointment request has been received. Our team will contact you to confirm the date and time.";
@@ -63,7 +62,7 @@ $conn->close();
 <body>
 <header class="nav-container">
 <div class="logo">
-    Hi <?php echo htmlspecialchars($username); ?>
+    <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
     <nav>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
@@ -83,8 +82,7 @@ $conn->close();
         <div class="form-group">
             <label>Preferred Doctor:</label>
             <select name="doctor">
-                <option value="1">1. Dr. Aisyah</option>
-                <option value="2">2. Dr. Firdaus</option>
+                <option value="2">Dr. Firdaus</option>
             </select>
         </div>
         <div class="form-group">
@@ -120,7 +118,7 @@ $conn->close();
         </div>
         <div class="form-group">
             <label>NRIC / Passport No:</label>
-            <input type="text" name="ic" required value="<?php echo $prefill_ic; ?>">
+            <input type="text" name="icnumber" required value="<?php echo $prefill_icnumber; ?>">
         </div>
         <div class="form-group">
             <label>Phone Number:</label>

@@ -3,29 +3,32 @@ session_start();
 echo "<pre>Logged in as: " . $_SESSION['username'] . "</pre>";
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
-
 // Check if doctor is logged in
 if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
     header("Location: login.php");
     exit();
 }
 
-$doctorName = $_SESSION['username'];
- // assuming this matches doctor_name in assign_doctor table
+// Assuming doctor_name in DB is stored as: "Dr. Aisyah", "Dr. Firdaus", etc.
+$doctorUsername = $_SESSION['username'];
+$doctorNameMap = [
+    'aisyah' => 'Dr. Aisyah',
+    'daus'   => 'Dr. Firdaus'
+];
+$doctorName = $doctorNameMap[$doctorUsername] ?? '';
 
 // Database connection
 $conn = new mysqli("localhost", "web40", "web40", "daus");
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Fetch appointments assigned to this doctor
 $sql = "
-    SELECT ab.id, ab.fullname, ab.icnumber, ab.date, ab.time, ab.concern, ad.assigned_at
+    SELECT ab.id, ab.fullname, ab.icnumber, ab.date, ab.time, ab.concern, ad.assigned_at, ad.status
     FROM assign_doctor ad
     JOIN appointment_bookings ab ON ad.appointment_id = ab.id
-    WHERE ad.username = ?
+    WHERE ad.doctor_name = ?
     ORDER BY ab.date DESC, ab.time ASC
 ";
 
@@ -43,18 +46,17 @@ $stmt->close();
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>doctor</title>
+    <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+        <div class="logo">Hi Dr. <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
@@ -67,41 +69,57 @@ $conn->close();
     </header>
 
     <section id="home" class="hero">
-        <h1>Doctor</h1>
-        <p>Hi, I'm MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, UTM Student learning to become web developer creating responsive and user-friendly websites.</p>
+        <h1>Doctor Dashboard</h1>
+        <p>Welcome, <?php echo htmlspecialchars($doctorName); ?>. Below are your assigned appointments.</p>
 
         <h2>Appointment Details</h2>
-<?php if (!empty($appointments)): ?>
-    <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>NRIC</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Purpose</th>
-                <th>Assigned At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($appointments as $app): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($app['id']); ?></td>
-                    <td><?php echo htmlspecialchars($app['fullname']); ?></td>
-                    <td><?php echo htmlspecialchars($app['icnumber']); ?></td>
-                    <td><?php echo htmlspecialchars($app['date']); ?></td>
-                    <td><?php echo htmlspecialchars($app['time']); ?></td>
-                    <td><?php echo htmlspecialchars($app['concern']); ?></td>
-                    <td><?php echo htmlspecialchars($app['assigned_at']); ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php else: ?>
-    <p>No appointments assigned to you.</p>
-<?php endif; ?>
-
+        <?php if (!empty($appointments)): ?>
+            <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>NRIC</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Purpose</th>
+                        <th>Assigned At</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($appointments as $app): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($app['id']); ?></td>
+                            <td><?php echo htmlspecialchars($app['fullname']); ?></td>
+                            <td><?php echo htmlspecialchars($app['icnumber']); ?></td>
+                            <td><?php echo htmlspecialchars($app['date']); ?></td>
+                            <td><?php echo htmlspecialchars($app['time']); ?></td>
+                            <td><?php echo htmlspecialchars($app['concern']); ?></td>
+                            <td><?php echo htmlspecialchars($app['assigned_at']); ?></td>
+                            <td><?php echo htmlspecialchars($app['status']); ?></td>
+                            <td>
+                                <form method="POST" action="update_status.php" style="display:inline;">
+                                    <input type="hidden" name="appointment_id" value="<?php echo $app['id']; ?>">
+                                    <select name="status">
+                                        <option value="Pending">Pending</option>
+                                        <option value="Done">Done</option>
+                                    </select>
+                                    <button type="submit" name="update">Update</button>
+                                </form>
+                                
+                                <form method="POST" action="delete_appointment.php" onsubmit="return confirm('Are you sure to delete this assignment?');" style="display:inline;">
+                                    <input type="hidden" name="appointment_id" value="<?php echo $app['id']; ?>">
+                                    <button type="submit" name="delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No appointments assigned to you.</p>
+        <?php endif; ?>
     </section>
 
     <footer>
