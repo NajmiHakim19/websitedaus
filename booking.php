@@ -69,6 +69,7 @@ $conn->close();
             <li><a href="logout.php">Logout</a></li>
             <li><a href="patient.php">Home</a></li>
             <li><a href="booking.php" class="active">Booking Appointment</a></li>
+            <li><a href="mybooking.php">Your Appointment</a></li>
             <li><a href="about.php">About us</a></li>
             <li><a href="Information.php">Information Hub</a></li>
         </ul>

@@ -62,6 +62,7 @@ $conn->close();
         <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
+                <li><a href="logout.php">Logout</a></li>
                 <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="login.php" class="active">Login</a></li>
                 <li><a href="booking.php" class="active">Booking Appointment</a></li>
