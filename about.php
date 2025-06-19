@@ -21,8 +21,8 @@
             <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.php" class="active">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="about.php" class="active">About us</a></li>
+                <li><a href="informationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>

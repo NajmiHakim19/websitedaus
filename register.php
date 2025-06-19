@@ -1,17 +1,7 @@
 <?php
-session_start(); // Start session to store login info
 
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-session_start();
-
-// Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus"); // uses "users" DB
+$conn = new mysqli("localhost", "root", "", "daus"); // uses "users" DB
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

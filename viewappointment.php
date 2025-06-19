@@ -8,7 +8,7 @@ print_r($_SESSION);
 echo "</pre>";
 
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -39,7 +39,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guest</title>
+    <title>Patient Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         table {
@@ -100,11 +100,12 @@ $conn->close();
                 <td><?php echo htmlspecialchars($appointment['date']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['time']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['concern']); ?></td>
+                
                 <td>
-                    <select name="doctor" required>
-                        <option value="">-- Select Doctor --</option>
-                        <option value="Dr. Firdaus">Dr. Firdaus</option>
-                    </select>
+                <select name="doctor" required>
+                    <option value="">-- Select Doctor --</option>
+                    <option value="Dr. Firdaus" <?php if ($appointment['doctor'] === 'Dr. Firdaus') echo 'selected'; ?>>Dr. Firdaus</option>
+                </select>
                     <input type="hidden" name="appointment_id" value="<?php echo $appointment['id']; ?>">
                     <button type="submit" class="save-button">Save</button>
                 </td>

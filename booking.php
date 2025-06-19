@@ -2,7 +2,7 @@
 session_start();
 
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "", "daus");
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 
@@ -62,14 +62,15 @@ $conn->close();
 <body>
 <header class="nav-container">
 <div class="logo">
-    <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
+    Hi <?php echo htmlspecialchars($username); ?>
+</div>
     <nav>
         <ul class="nav-links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="logout.php">Logout</a></li>
+            <li><a href="patient.php">Home</a></li>
             <li><a href="booking.php" class="active">Booking Appointment</a></li>
-            <li><a href="about.php">About Me</a></li>
-            <li><a href="projects.php">Projects</a></li>
+            <li><a href="about.php">About us</a></li>
+            <li><a href="Information.php">Information Hub</a></li>
         </ul>
         <div class="hamburger">☰</div>
     </nav>

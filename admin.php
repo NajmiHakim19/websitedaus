@@ -1,7 +1,7 @@
 <?php
 // Database connection
 //$conn = new mysqli("localhost", "root", "", "daus");
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "", "daus");
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
@@ -26,10 +26,8 @@ $conn->close();
     <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="viewappointment.php" class="active">View Appointment</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="viewappointment.php">View Appointment</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -39,9 +37,7 @@ $conn->close();
         <h1>Admin Dashboard</h1>
         <p>Hi, I'm MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, UTM Student learning to become web developer creating responsive and user-friendly websites.</p>
 
-        //put code here
         
-        <a href="#projects" class="cta-button">View My Work</a>
         <?php if (!empty($submission_message)): ?>
             <p class="submission-message"><?php echo $submission_message; ?></p>
         <?php endif; ?>

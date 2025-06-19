@@ -12,7 +12,7 @@ if (!isset($_SESSION['icnumber'])) {
 $currentUserNric = $_SESSION['icnumber'];
 
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -60,15 +60,13 @@ $conn->close();
 <body>
     <header class="nav-container">
     <div class="logo">
-    Hi <?php echo htmlspecialchars($username); ?>
+    Hi <?php echo htmlspecialchars($username); ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="booking.php" class="active">Booking Appointment</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php" class="active">Your Appointment</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="InformationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -98,7 +96,7 @@ $conn->close();
         $doctorName = '-';
         $appointmentId = $appointment['id'];
 
-        $conn = new mysqli("localhost", "web40", "web40", "daus");
+        $conn = new mysqli("localhost", "root", "", "daus");
         if (!$conn->connect_error) {
             $stmt = $conn->prepare("SELECT doctor_name FROM assign_doctor WHERE appointment_id = ? ORDER BY id DESC LIMIT 1");
             $stmt->bind_param("i", $appointmentId);
@@ -132,7 +130,6 @@ $conn->close();
             <p>No appointments found.</p>
         <?php endif; ?>
 
-        <a href="#projects" class="cta-button">View My Work</a>
         <?php if (!empty($submission_message)): ?>
             <p class="submission-message"><?php echo $submission_message; ?></p>
         <?php endif; ?>
