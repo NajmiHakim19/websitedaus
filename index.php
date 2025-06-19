@@ -1,6 +1,7 @@
 <?php
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "root", "daus");
+//$conn = new mysqli("localhost", "root", "root", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
