@@ -44,6 +44,7 @@ $conn->close();
 </div>
         <nav>
             <ul class="nav-links">
+                <li><a href="logout.php">Logout</a></li>
                 <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php">Your Appointment</a></li>
