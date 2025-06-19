@@ -24,7 +24,7 @@ $conn->close();
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="login.php" class="active">Login</a></li>
+                <li><a href="viewappointment.php" class="active">Login</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
             </ul>

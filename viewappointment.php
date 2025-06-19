@@ -1,44 +1,36 @@
 <?php
 session_start();
 
+// Debug: Show session info
+echo "<pre>DEBUG: SESSION\n";
+print_r($_SESSION);
+echo "</pre>";
+
+// Database connection
 $conn = new mysqli("localhost", "web40", "web40", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $doctor = trim($_POST['doctor']);
-    $appointment_id = (int) $_POST['appointment_id'];
+// Fetch appointment data
+$appointments = [];
+$result = $conn->query("SELECT * FROM appointment_bookings ORDER BY id DESC");
 
-    if (!empty($doctor) && $appointment_id > 0) {
-        // ✅ Insert or update doctor assignment
-        $sql = "
-            INSERT INTO assign_doctor (appointment_id, doctor_name)
-            VALUES (?, ?)
-            ON DUPLICATE KEY UPDATE 
-                doctor_name = VALUES(doctor_name),
-                assigned_at = CURRENT_TIMESTAMP
-        ";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $appointment_id, $doctor);
-
-        if ($stmt->execute()) {
-            header("Location: index.php?message=Doctor assigned or updated");
-            exit();
-        } else {
-            echo "Execution error: " . $stmt->error;
-        }
-
-        $stmt->close();
-    } else {
-        echo "Invalid data. Please try again.";
-    }
+if ($result && $result->num_rows > 0) {
+    $appointments = $result->fetch_all(MYSQLI_ASSOC);
+    
+    // Debug: show fetched appointments
+    echo "<pre>DEBUG: Appointments Fetched\n";
+    print_r($appointments);
+    echo "</pre>";
+} else {
+    echo "<pre>DEBUG: No appointments found in the database.</pre>";
 }
 
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -82,7 +74,6 @@ $conn->close();
 
     <section id="home" class="hero">
         <h1>Admin Dashboard</h1>
-        <p>Hi, I'm MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, UTM Student learning to become web developer creating responsive and user-friendly websites.</p>
 
         <!-- Table displaying appointments -->
         <?php if (!empty($appointments)): ?>
@@ -101,7 +92,7 @@ $conn->close();
     <tbody>
     <?php foreach ($appointments as $appointment): ?>
         <tr>
-            <form action="assign_doctor.php" method="POST">
+            <form action="assign_doctor.php" method="POST" onsubmit="return setDoctorUsernameOnSubmit(this);">
                 <td><?php echo htmlspecialchars($appointment['id']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
@@ -113,8 +104,8 @@ $conn->close();
                         <option value="">-- Select Doctor --</option>
                         <option value="Dr. Aisyah">Dr. Aisyah</option>
                         <option value="Dr. Firdaus">Dr. Firdaus</option>
-                        <!-- Add more doctors as needed -->
                     </select>
+                    <input type="hidden" name="username" id="username-<?php echo $appointment['id']; ?>">
                     <input type="hidden" name="appointment_id" value="<?php echo $appointment['id']; ?>">
                     <button type="submit" class="save-button">Save</button>
                 </td>
@@ -129,7 +120,6 @@ $conn->close();
             <p>No appointments found.</p>
         <?php endif; ?>
 
-        <a href="#projects" class="cta-button">View My Work</a>
         <?php if (!empty($submission_message)): ?>
             <p class="submission-message"><?php echo $submission_message; ?></p>
         <?php endif; ?>
@@ -141,6 +131,33 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>
     </footer>
+
+    <script>
+function setDoctorUsernameOnSubmit(form) {
+    const doctorMap = {
+        "Dr. Aisyah": "aisyah",
+        "Dr. Firdaus": "daus"
+    };
+
+    const doctorSelect = form.querySelector('select[name="doctor"]');
+    const usernameInput = form.querySelector('input[name="username"]');
+
+    const selectedDoctor = doctorSelect.value;
+    const mappedUsername = doctorMap[selectedDoctor] || "";
+
+    usernameInput.value = mappedUsername;
+
+    // Optional: prevent submission if username is missing
+    if (!mappedUsername) {
+        alert("Please select a valid doctor.");
+        return false;
+    }
+
+    return true; // allow form to submit
+}
+</script>
+
+
     <script src="script.js"></script>
 </body>
 </html>

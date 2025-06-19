@@ -35,7 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
         $_SESSION['userType'] = $row['userType'];
-        $_SESSION['icnumber'] = $row['icnumber']; 
+        $_SESSION['icnumber'] = $row['icnumber'];          
+        $_SESSION['fullname'] = $row['fullname'];     
+
 
         // Debug: Show retrieved values
         echo "<pre>";

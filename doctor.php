@@ -1,5 +1,7 @@
 <?php
 session_start();
+echo "<pre>Logged in as: " . $_SESSION['username'] . "</pre>";
+
 
 // Check if doctor is logged in
 if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
@@ -7,7 +9,8 @@ if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
     exit();
 }
 
-$doctorName = $_SESSION['username']; // assuming this matches doctor_name in assign_doctor table
+$doctorName = $_SESSION['username'];
+ // assuming this matches doctor_name in assign_doctor table
 
 // Database connection
 $conn = new mysqli("localhost", "web40", "web40", "daus");
@@ -21,7 +24,7 @@ $sql = "
     SELECT ab.id, ab.fullname, ab.icnumber, ab.date, ab.time, ab.concern, ad.assigned_at
     FROM assign_doctor ad
     JOIN appointment_bookings ab ON ad.appointment_id = ab.id
-    WHERE ad.doctor_name = ?
+    WHERE ad.username = ?
     ORDER BY ab.date DESC, ab.time ASC
 ";
 

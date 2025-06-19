@@ -73,7 +73,7 @@ $conn->close();
     </header>
 
     <section id="home" class="hero">
-        <h1>Admin Dashboard</h1>
+        <h1>Patient Dashboard</h1>
 
         <!-- Table displaying appointments -->
         <?php if (!empty($appointments)): ?>

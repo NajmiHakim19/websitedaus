@@ -10,22 +10,28 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctor = trim($_POST['doctor']);
     $appointment_id = (int) $_POST['appointment_id'];
+    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
 
-    if (!empty($doctor) && $appointment_id > 0) {
-        // ✅ Insert or update doctor assignment
+    // Debug
+    echo "<pre>DEBUG POST:\n";
+    print_r($_POST);
+    echo "</pre>";
+
+    if (!empty($doctor) && !empty($username) && $appointment_id > 0) {
         $sql = "
-            INSERT INTO assign_doctor (appointment_id, doctor_name)
-            VALUES (?, ?)
+            INSERT INTO assign_doctor (appointment_id, doctor_name, username)
+            VALUES (?, ?, ?)
             ON DUPLICATE KEY UPDATE 
                 doctor_name = VALUES(doctor_name),
+                username = VALUES(username),
                 assigned_at = CURRENT_TIMESTAMP
         ";
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $appointment_id, $doctor);
+        $stmt->bind_param("iss", $appointment_id, $doctor, $username);
 
         if ($stmt->execute()) {
-            header("Location: index.php?message=Doctor assigned or updated");
+            header("Location: viewappointment.php?success=1");
             exit();
         } else {
             echo "Execution error: " . $stmt->error;
@@ -33,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->close();
     } else {
-        echo "Invalid data. Please try again.";
+        echo "Missing or invalid data.";
     }
 }
 
