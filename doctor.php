@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo "<pre>Logged in as: " . $_SESSION['username'] . "</pre>";
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
+$firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
 // Check if doctor is logged in
 if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
@@ -18,7 +18,8 @@ $doctorNameMap = [
 $doctorName = $doctorNameMap[$doctorUsername] ?? '';
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
+require_once "db_connect.php";
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -56,7 +57,7 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">Hi Dr. <?php echo htmlspecialchars($username) ?></div>
+        <div class="logo">Hi Dr. <?php echo htmlspecialchars($firstname) ?></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "db_connect.php";
 
 // Debug: Show POST data
 echo "<pre>DEBUG: POST Data\n";
@@ -7,7 +8,7 @@ print_r($_POST);
 echo "</pre>";
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
+//$conn = new mysqli("localhost", "root", "", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

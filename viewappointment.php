@@ -1,14 +1,12 @@
 <?php
 session_start();
+require_once "db_connect.php";
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 // Debug: Show session info
 echo "<pre>DEBUG: SESSION\n";
 print_r($_SESSION);
 echo "</pre>";
-
-// Database connection
-$conn = new mysqli("localhost", "root", "", "daus");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
