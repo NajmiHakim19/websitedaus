@@ -1,5 +1,6 @@
 <?php
 session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 // Example: Assume NRIC is stored in session after login
 if (!isset($_SESSION['icnumber'])) {
@@ -58,7 +59,8 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+    <div class="logo">
+    Hi <?php echo htmlspecialchars($username); ?>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>

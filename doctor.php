@@ -1,6 +1,7 @@
 <?php
 session_start();
 echo "<pre>Logged in as: " . $_SESSION['username'] . "</pre>";
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 
 // Check if doctor is logged in

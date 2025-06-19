@@ -1,6 +1,9 @@
 <?php
 // Database connection
-$conn = new mysqli("localhost", "web40", "web40", "daus");
+$conn = new mysqli("localhost", "root", "", "daus");
+session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -35,7 +38,9 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+    <div class="logo">
+    Hi <?php echo htmlspecialchars($username); ?>
+</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
