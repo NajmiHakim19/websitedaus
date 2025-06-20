@@ -20,7 +20,7 @@ $conn->close();
     <meta name="description" content="Projects by MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, showcasing web development work with HTML, CSS, and JavaScript.">
 
     <!--PAGE TITLE-->
-    <title>Projects - MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR Portfolio</title>
+    <title>Information Hub - Patient</title>
 
     <!--CSS FILE LINK-->
     <link rel="stylesheet" href="styles.css">
@@ -66,7 +66,7 @@ $conn->close();
 
     <!--FOOTER-->
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
         <div class="social-links">
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>

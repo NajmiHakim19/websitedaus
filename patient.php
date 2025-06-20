@@ -9,22 +9,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle form submission
-$submission_message = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $conn->real_escape_string($_POST['name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $message = $conn->real_escape_string($_POST['message']);
-
-    $sql = "INSERT INTO contact_submissions (name, email, message) VALUES ('$name', '$email', '$message')";
-    
-    if ($conn->query($sql) === TRUE) {
-        $submission_message = "Thank you for your message!";
-    } else {
-        $submission_message = "Error: " . $conn->error;
-    }
-}
-
 $conn->close();
 ?>
 
@@ -33,7 +17,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guest</title>
+    <title>Patient</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -54,12 +38,11 @@ $conn->close();
     </header>
 
     <section id="home" class="hero">
-        <h1>patient</h1>
-        <p>Hi, I'm MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, UTM Student learning to become web developer creating responsive and user-friendly websites.</p>
-    </section>
-
+        <h1>patient Module</h1>
+        <p>Hi
+</section>
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
         <div class="social-links">
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>

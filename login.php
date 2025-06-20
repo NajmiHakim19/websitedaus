@@ -82,12 +82,12 @@ $conn->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</title>
+    <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+        <div class="logo">CANCER INFORMATION AND SUPPORT</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="login.php" class="active">Login</a></li>
@@ -120,7 +120,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
         <div class="social-links">
             <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
         </div>

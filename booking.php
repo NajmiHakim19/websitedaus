@@ -137,7 +137,7 @@ $conn->close();
 </section>
 
 <footer>
-    <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
     <div class="social-links">
         <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
     </div>

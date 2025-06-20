@@ -8,7 +8,7 @@
     <meta name="description" content="About MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, a web developer with a passion for creating responsive websites.">
 
     <!--PAGE TITLE-->
-    <title>About Me - MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR Portfolio</title>
+    <title>About US</title>
 
     <!--CSS FILE LINK-->
     <link rel="stylesheet" href="styles.css">
@@ -18,7 +18,7 @@
     <!--HEADER-->
     <header>
         <nav class="nav-container">
-            <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+            <div class="logo">CANCER INFORMATION AND SUPPORT</div>
             <ul class="nav-links">
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Register</a></li>
@@ -33,16 +33,16 @@
     <!--ABOUT ME CONTENT -->
     <main>
         <section class="about">
-            <h1>About Me</h1>
+            <h1>About Us</h1>
             <img src="AUS.jpg" alt="Professional headshot of MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR" class="profile-img">
-            <p>My name is MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, ID: A24CS5031 a web development student at UTM, with a strong desire to create clean, responsive, and accessible websites. Focussing on current layout strategies like Flexbox and CSS Grid, I targeting to become expert in HTML, CSS, and JavaScript.</p>
-            <p>When I have spare time, I like working on open-source initiatives and investigating fresh web technologies. I want to design simple digital experiences that change things.</p>
+            <p>We are....</p>
+            
         </section>
     </main>
 
     <!--FOOTER-->
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
         <div class="social-links">
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub Link</a>
         </div>

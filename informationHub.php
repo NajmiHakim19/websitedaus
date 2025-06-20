@@ -7,7 +7,7 @@
     <meta name="description" content="Projects by MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR, showcasing web development work with HTML, CSS, and JavaScript.">
 
     <!--PAGE TITLE-->
-    <title>Projects - MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR Portfolio</title>
+    <title>INFORMATION HUB</title>
 
     <!--CSS FILE LINK-->
     <link rel="stylesheet" href="styles.css">
@@ -17,7 +17,7 @@
     <!--HEADER-->
     <header>
         <nav class="nav-container">
-            <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
+            <div class="logo">CANCER INFORMATION AND SUPPORT</div>
             <ul class="nav-links">
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Register</a></li>
@@ -52,7 +52,7 @@
 
     <!--FOOTER-->
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
+        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
         <div class="social-links">
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>
