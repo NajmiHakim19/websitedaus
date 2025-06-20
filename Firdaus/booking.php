@@ -2,7 +2,7 @@
 session_start();
 
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
 
@@ -55,7 +55,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Appointment</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <header class="nav-container">

@@ -17,7 +17,7 @@ $doctorNameMap = [
 $doctorName = $doctorNameMap[$doctorUsername] ?? '';
 
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -115,7 +115,7 @@ $conn->close();
                             <td><?php echo htmlspecialchars($app['assigned_at']); ?></td>
                             <?php
                              $phone = '';
-                             $conn2 = new mysqli("localhost", "root", "", "daus");
+                             $conn2 = new mysqli("localhost", "root", "", "canceriinfoandsupport");
                              if (!$conn2->connect_error) {
                              $stmt2 = $conn2->prepare("SELECT phone FROM appointment_bookings WHERE id = ?");
                              $stmt2->bind_param("i", $app['id']);

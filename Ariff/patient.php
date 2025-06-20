@@ -1,6 +1,6 @@
 <?php
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 session_start();
 $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
@@ -28,7 +28,7 @@ $conn->close();
             <ul class="nav-links">
                 <li><a href="logout.php">Logout</a></li>
                 <li><a href="patient.php" class="active">Home</a></li>
-                <li><a href="booking.php">Booking Appointment</a></li>
+                <li><a href="Firdaus/booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php">Your Appointment</a></li>
                 <li><a href="aboutForPatient.php">About Us</a></li>
                 <li><a href="informationHubForPatient.php">Information Hub</a></li>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['icnumber'])) {
 
 $currentUserNric = $_SESSION['icnumber'];
 
-require_once "db_connect.php";
+require_once "../db_connect.php";
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -46,7 +46,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         table {
             width: 100%;

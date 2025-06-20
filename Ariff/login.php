@@ -3,7 +3,7 @@ session_start(); // Start session to store login info
 
 
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 
 
 if ($conn->connect_error) {
