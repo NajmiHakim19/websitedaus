@@ -18,6 +18,7 @@ if (isset($_SESSION['username'])) {
         $user = $user_result->fetch_assoc();
         $prefill_fullname = htmlspecialchars($user['firstname'] . ' ' . $user['lastname']);
         $prefill_icnumber = htmlspecialchars($user['icnumber']);
+        $prefill_phonenumber = htmlspecialchars($user['phonenumber']);
     }
 }
 
@@ -171,7 +172,7 @@ $allSlots = generateTimeSlots();
         </div>
         <div class="form-group">
             <label>Phone Number:</label>
-            <input type="text" name="phone" placeholder="+60" required>
+            <input type="text" name="phone" required value="<?php echo $prefill_phonenumber; ?>">
         </div>
 
         <p class="note">Kindly note this is not a confirmed appointment. Our Customer Service team will contact you to finalize your appointment date & time based on doctor's availability.</p>
