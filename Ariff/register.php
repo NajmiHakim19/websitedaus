@@ -121,7 +121,7 @@ $conn->close();
     <section class="hero">
         <h1>Register</h1>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="contact-form">
-    <h2>Register as a New Patient</h2>
+    <h2>Register as a New Patient To Access More Features</h2>
 
     <div class="form-group">
         <label for="firstname">First Name:</label>
@@ -158,10 +158,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
     <script src="../script.js"></script>
 </body>

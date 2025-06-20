@@ -26,8 +26,8 @@ $conn->close();
                 <li><a href="Ariff/login.php">Login</a></li>
                 <li><a href="Ariff/register.php">Register</a></li>
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="about.php">About us</a></li>
-                <li><a href="informationHub.php">Information Hub</a></li>
+                <li><a href="Nik/about.php">About us</a></li>
+                <li><a href="Nik/informationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -42,10 +42,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
     <script src="script.js"></script>
 </body>

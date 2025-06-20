@@ -34,7 +34,6 @@
     <main>
         <section class="about">
             <h1>About Us</h1>
-            <img src="AUS.jpg" alt="Professional headshot of MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR" class="profile-img">
             <p>We are....</p>
             
         </section>
@@ -42,10 +41,7 @@
 
     <!--FOOTER-->
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub Link</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
     <script src="../script.js"></script>
 </body>

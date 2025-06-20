@@ -33,8 +33,8 @@ $conn->close();
             <div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
             <ul class="nav-links">
             <li><a href="logout.php">Logout</a></li>
-                <li><a href="patient.php">Home</a></li>
-                <li><a href="booking.php">Booking Appointment</a></li>
+                <li><a href="../Ariff/patient.php">Home</a></li>
+                <li><a href="../Ariff/booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php">Your Appointment</a></li>
                 <li><a href="aboutForPatient.php"class="active">About Us</a></li>
                 <li><a href="informationHubForPatient.php">Information Hub</a></li>
@@ -45,20 +45,16 @@ $conn->close();
 
     <!--ABOUT ME CONTENT -->
     <main>
-        <section class="about">
-            <h1>About Me</h1>
-            <p></p>
-            <p></p>
+    <section class="about">
+            <h1>About Us</h1>
+            <p>We are....</p>
+            
         </section>
     </main>
 
     <!--FOOTER-->
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub Link</a>
-        </div>
-    </footer>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     <script src="../script.js"></script>
 </body>
 </html>

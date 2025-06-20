@@ -42,10 +42,7 @@ $conn->close();
         <p>Hi
 </section>
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
     <script src="../script.js"></script>
 </body>

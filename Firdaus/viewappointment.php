@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "db_connect.php";
+require_once "../db_connect.php";
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : "Guest";
 
 // Debug: Show session info
@@ -38,7 +38,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         table {
             width: 100%;
@@ -60,13 +60,13 @@ $conn->close();
         <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php" class="active">Login</a></li>
+                <li><a href="../Ariff/logout.php">Logout</a></li>
+                <li><a href="../Ariff/patient.php" class="active">Home</a></li>
+                <li><a href="../Ariff/login.php" class="active">Login</a></li>
                 <li><a href="booking.php" class="active">Booking Appointment</a></li>
                 <li><a href="mybooking.php" class="active">View Appointment</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="../Nik/about.php">About Me</a></li>
+                <li><a href="../Nik/informationHubForPatient.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -92,7 +92,7 @@ $conn->close();
     <tbody>
     <?php foreach ($appointments as $appointment): ?>
         <tr>
-            <form action="assign_doctor.php" method="POST" class="doctor-form">
+            <form action="../Amin/assign_doctor.php" method="POST" class="doctor-form">
                 <td><?php echo htmlspecialchars($appointment['id']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
                 <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
@@ -125,11 +125,8 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR. A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

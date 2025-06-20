@@ -86,15 +86,16 @@ $conn->close();
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header class="nav-container">
+<header class="nav-container">
         <div class="logo">CANCER INFORMATION AND SUPPORT</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="login.php" class="active" >Login</a></li>
-                <li><a href="register.php" >Register</a></li>
+                <li><a href="login.php" class="active">Login</a></li>
+                <li><a href="register.php">Register</a></li>
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="../Nik/about.php">About Me</a></li>
                 <li><a href="../Nik/informationHub.php">Information Hub</a></li>
+            </ul>
             <div class="hamburger">☰</div>
         </nav>
     </header>
@@ -119,10 +120,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
     <script src="../script.js"></script>
 </body>

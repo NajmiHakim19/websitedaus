@@ -5,7 +5,7 @@ $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
 // Check if doctor is logged in
 if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
-    header("Location: login.php");
+    header("Location: ../Ariff/login.php");
     exit();
 }
 
@@ -52,7 +52,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         table {
             width: 100%;
@@ -74,7 +74,7 @@ $conn->close();
         <div class="logo">Hi <?php echo htmlspecialchars($doctorName) ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="../Ariff/logout.php">Logout</a></li>
                 
 
         
@@ -151,11 +151,8 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. By, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

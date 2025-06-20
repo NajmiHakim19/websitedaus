@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->execute()) {
                 echo "<pre>DEBUG: Insert or update success in assign_doctor table.</pre>";
 
-                // ✅ ALSO update doctor in appointment_bookings
                 $updateSql = "UPDATE appointment_bookings SET doctor = ? WHERE id = ?";
                 $updateStmt = $conn->prepare($updateSql);
                 if ($updateStmt) {

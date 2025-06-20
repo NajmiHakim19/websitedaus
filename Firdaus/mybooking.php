@@ -72,7 +72,7 @@ $conn->close();
                 <li><a href="../Ariff/patient.php">Home</a></li>
                 <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php" class="active">Your Appointment</a></li>
-                <li><a href="aboutForPatient.php">About Us</a></li>
+                <li><a href="../Nik/aboutForPatient.php">About Us</a></li>
                 <li><a href="../Nik/InformationHubForPatient.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
@@ -118,11 +118,8 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, A24CS5031.</p>
-        <div class="social-links">
-            <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
-        </div>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
