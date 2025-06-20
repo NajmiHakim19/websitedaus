@@ -21,7 +21,7 @@
             <ul class="nav-links">
                 <li><a href="../Ariff/login.php">Login</a></li>
                 <li><a href="../Ariff/register.php">Register</a></li>
-                <li><a href="../index.php">Home</a></li>
+                <li><a href="../index2.php">Home</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="informationHub.php" class="active">Information Hub</a></li>
             </ul>

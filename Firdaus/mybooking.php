@@ -84,6 +84,8 @@ $conn->close();
         <p>Below are your list of appointments:</p>
 
         <?php if (!empty($appointments)): ?>
+            <div class="table-container">
+                
             <table>
                 <thead>
                     <tr>
@@ -112,6 +114,7 @@ $conn->close();
                     <?php endforeach; ?>
                 </tbody>
             </table>
+                    </div>
         <?php else: ?>
             <p>No appointments found.</p>
         <?php endif; ?>
