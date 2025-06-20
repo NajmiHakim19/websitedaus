@@ -89,10 +89,10 @@ $conn->close();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($appointments as $appointment): ?>
+                <?php foreach ($appointments as $i => $appointment): ?>
                     <tr>
                         <form action="assign_doctor.php" method="POST" class="doctor-form">
-                            <td><?php echo htmlspecialchars($appointment['id']); ?></td>
+                             <td><?php echo $i + 1; ?></td>
                             <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['date']); ?></td>

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $icnumber = $conn->real_escape_string($_POST['icnumber']);
         $username = $conn->real_escape_string($_POST['username']);
         $password = $conn->real_escape_string($_POST['password']);
+        $phonenumber = $conn->real_escape_string($_POST['phonenumber']);
         $userType = "patient"; // by default
 
         // Debug info
@@ -26,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "IC: $icnumber\n";
         echo "Username: $username\n";
         echo "Password: $password\n";
+        echo "Phone Number: $phonenumber\n";
         echo "</pre>";
 
         // Check if username already exists
@@ -33,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($check->num_rows > 0) {
             $login_message = "Username already taken.";
         } else {
-            $sql = "INSERT INTO users (firstname, lastname, icnumber, username, password, userType)
-                    VALUES ('$firstname', '$lastname', '$icnumber', '$username', '$password', '$userType')";
+            $sql = "INSERT INTO users (firstname, lastname, icnumber, username, password, phonenumber, userType)
+                    VALUES ('$firstname', '$lastname', '$icnumber', '$username', '$password', '$phonenumber', '$userType')";
 
             if ($conn->query($sql) === TRUE) {
                 $login_message = "Registration successful! You may now log in.";
@@ -139,10 +141,15 @@ $conn->close();
     </div>
 
     <div class="form-group">
+        <label for="phonenumber">Phone Number:</label>
+        <input type="text" id="phonenumber" name="phonenumber" required>
+    </div>
+    
+    <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
     </div>
-
+    
     <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
