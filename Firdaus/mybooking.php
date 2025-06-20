@@ -98,9 +98,9 @@ $conn->close();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($appointments as $appointment): ?>
+                    <?php foreach ($appointments as $i => $appointment): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($appointment['id']); ?></td>
+                            <td><?php echo $i + 1; ?></td>
                             <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['date']); ?></td>

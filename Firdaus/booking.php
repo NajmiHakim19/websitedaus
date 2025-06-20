@@ -1,16 +1,13 @@
 <?php
 session_start();
 
-// Database connection
 require_once "../db_connect.php";
-$firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
-
+$firstname = $_SESSION['firstname'] ?? "Guest";
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch user data for prefill
 $prefill_fullname = "";
 $prefill_icnumber = "";
 if (isset($_SESSION['username'])) {
@@ -24,7 +21,6 @@ if (isset($_SESSION['username'])) {
     }
 }
 
-// Handle appointment booking submission
 $submission_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $doctor = $conn->real_escape_string($_POST['doctor']);
@@ -46,7 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$conn->close();
+function generateTimeSlots($start = "09:00", $end = "17:00", $interval = 60) {
+    $slots = [];
+    $startTime = strtotime($start);
+    $endTime = strtotime($end);
+    while ($startTime < $endTime) {
+        $slots[] = date("H:i", $startTime);
+        $startTime = strtotime("+{$interval} minutes", $startTime);
+    }
+    return $slots;
+}
+$allSlots = generateTimeSlots();
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +62,49 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Appointment</title>
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        .time-slots-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .time-slot {
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 30px;
+            background-color: #fff;
+            color: #007bff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .time-slot:hover {
+            background-color: #007bff;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .time-slot.selected {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .time-slot.disabled {
+            background-color: #e9ecef;
+            color: #999;
+            border-color: #ccc;
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+        }
+    </style>
 </head>
 <body>
 <header class="nav-container">
-<div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
-</div>
+    <div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
     <nav>
         <ul class="nav-links">
             <li><a href="../Ariff/logout.php">Logout</a></li>
@@ -80,8 +124,8 @@ $conn->close();
         <h2>1. Appointment Details</h2>
         <div class="form-group">
             <label>Preferred Doctor:</label>
-            <select name="doctor">
-                <option value="2">Dr. Firdaus</option>
+            <select name="doctor" required>
+                <option value="Dr. Firdaus">Dr. Firdaus</option>
             </select>
         </div>
         <div class="form-group">
@@ -97,7 +141,13 @@ $conn->close();
 
         <h2>3. Select Your Time</h2>
         <div class="form-group">
-            <input type="time" name="time" required>
+            <label>Select Time Slot:</label>
+            <div class="time-slots-container" id="timeSlots">
+                <?php foreach ($allSlots as $slot): ?>
+                    <button type="button" class="time-slot" data-time="<?php echo $slot; ?>"><?php echo date("h:i A", strtotime($slot)); ?></button>
+                <?php endforeach; ?>
+            </div>
+            <input type="hidden" name="time" id="selectedTime" required>
         </div>
 
         <h2>4. Patient's Details</h2>
@@ -137,8 +187,24 @@ $conn->close();
 </section>
 
 <footer>
-<p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
+    <p>&copy; 2025 CANCER INFORMATION AND SUPPORT. BY, Group 2: TECHNO.</p>
 </footer>
-<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const timeButtons = document.querySelectorAll(".time-slot");
+    const selectedTimeInput = document.getElementById("selectedTime");
+
+    timeButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (!btn.classList.contains("disabled")) {
+                timeButtons.forEach(b => b.classList.remove("selected"));
+                btn.classList.add("selected");
+                selectedTimeInput.value = btn.getAttribute("data-time");
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>
