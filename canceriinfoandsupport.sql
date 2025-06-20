@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 19, 2025 at 05:10 PM
--- Server version: 8.0.31
--- PHP Version: 8.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Jun 20, 2025 at 08:47 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `daus`
+-- Database: `canceriinfoandsupport`
 --
 
 -- --------------------------------------------------------
@@ -28,27 +28,17 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointment_bookings` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `doctor` varchar(100) DEFAULT NULL,
-  `specialty` varchar(100) DEFAULT NULL,
   `concern` text NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `salutation` varchar(10) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `icnumber` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `icnumber` varchar(20) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `appointment_bookings`
---
-
-INSERT INTO `appointment_bookings` (`id`, `doctor`, `specialty`, `concern`, `date`, `time`, `salutation`, `fullname`, `icnumber`, `phone`, `created_at`) VALUES
-(3, '2', '', 'asaasa', '2025-06-19', '12:10:00', 'Dr', 'Najmi Hakimah', '123456123245', '+60122884579', '2025-06-19 16:06:56'),
-(4, '2', '', 'asaasa', '2025-06-19', '12:10:00', 'Dr', 'Najmi Hakimah', '123456123245', '+60122884579', '2025-06-19 16:07:50'),
-(5, '2', '', 'asaasa', '2025-06-19', '12:10:00', 'Dr', 'Najmi Hakimah', '123456123245', '+60122884579', '2025-06-19 16:08:28');
 
 -- --------------------------------------------------------
 
@@ -57,37 +47,13 @@ INSERT INTO `appointment_bookings` (`id`, `doctor`, `specialty`, `concern`, `dat
 --
 
 CREATE TABLE `assign_doctor` (
-  `id` int NOT NULL,
-  `appointment_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `appointment_id` int(11) NOT NULL,
   `doctor_name` varchar(255) NOT NULL,
   `status` varchar(20) NOT NULL,
-  `assigned_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `assigned_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contact_submissions`
---
-
-CREATE TABLE `contact_submissions` (
-  `id` int NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `message` text COLLATE utf8mb4_general_ci NOT NULL,
-  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `contact_submissions`
---
-
-INSERT INTO `contact_submissions` (`id`, `name`, `email`, `message`, `timestamp`) VALUES
-(1, 'muhammad firdaus bin md shahrunnahar ', 'ciku137@gmail.com', 'hahah', '2025-05-30 19:21:14'),
-(2, 'CAPIK', 'htsmtiofficial@gmail.com', 'kakakak', '2025-06-02 15:59:34'),
-(3, 'Muhammad Firdaus Bin Md Shahrunnahar', 'ngadamdeanna@gmail.com', 'affafaf', '2025-06-02 02:50:44'),
-(4, 'dada', 'stellazahnis@gmail.com', 'hai', '2025-06-02 03:15:52');
 
 -- --------------------------------------------------------
 
@@ -111,8 +77,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`username`, `password`, `userType`, `firstname`, `lastname`, `icnumber`) VALUES
 ('admin', 'admin', 'admin', NULL, NULL, NULL),
 ('amin', 'amin', 'patient', 'Amin', 'Rasyad', '030512100992'),
+('amir', 'amir', 'patient', 'amir', 'Faris', '030303010239'),
 ('daus', 'daus', 'doctor', 'Muhammad', 'Firdaus', NULL),
-('hakim', 'hakim', 'patient', 'Najmi', 'Hakimah', '123456123245');
+('hakim', 'hakim', 'patient', 'Najmi', 'Hakimah', '123456123245'),
+('walid', 'walid', 'patient', 'walid', 'saya', '121212121212');
 
 --
 -- Indexes for dumped tables
@@ -132,12 +100,6 @@ ALTER TABLE `assign_doctor`
   ADD UNIQUE KEY `unique_appointment` (`appointment_id`);
 
 --
--- Indexes for table `contact_submissions`
---
-ALTER TABLE `contact_submissions`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -151,19 +113,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointment_bookings`
 --
 ALTER TABLE `appointment_bookings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `assign_doctor`
 --
 ALTER TABLE `assign_doctor`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `contact_submissions`
---
-ALTER TABLE `contact_submissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
