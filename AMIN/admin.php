@@ -40,7 +40,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         table {
             width: 100%;
@@ -62,7 +62,7 @@ $conn->close();
     <div class="logo">Hi <?php echo htmlspecialchars($username) ?></div>
     <nav>
         <ul class="nav-links">
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="../Ariff/logout.php">Logout</a></li>
         </ul>
         <div class="hamburger">☰</div>
     </nav>
@@ -130,6 +130,6 @@ $conn->close();
         <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
     </div>
 </footer>
-<script src="script.js"></script>
+<script src="../script.js"></script>
 </body>
 </html>

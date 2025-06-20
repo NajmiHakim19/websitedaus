@@ -68,12 +68,12 @@ $conn->close();
         <div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="patient.php">Home</a></li>
+                <li><a href="../Ariff/logout.php">Logout</a></li>
+                <li><a href="../Ariff/patient.php">Home</a></li>
                 <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php" class="active">Your Appointment</a></li>
                 <li><a href="aboutForPatient.php">About Us</a></li>
-                <li><a href="InformationHub.php">Information Hub</a></li>
+                <li><a href="../Nik/InformationHubForPatient.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>

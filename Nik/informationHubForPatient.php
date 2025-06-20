@@ -1,6 +1,6 @@
 <?php
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 session_start();
 $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
@@ -23,7 +23,7 @@ $conn->close();
     <title>Information Hub - Patient</title>
 
     <!--CSS FILE LINK-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
@@ -32,12 +32,12 @@ $conn->close();
         <nav class="nav-container">
         <div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
             <ul class="nav-links">
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="patient.php">Home</a></li>
-                <li><a href="booking.php">Booking Appointment</a></li>
-                <li><a href="mybooking.php">Your Appointment</a></li>
-                <li><a href="aboutForPatient.php">About Us</a></li>
-                <li><a href="informationHubForPatient.php" class="active">Inforamation Hub</a></li>
+                <li><a href="../Ariff/logout.php">Logout</a></li>
+                <li><a href="../Ariff/patient.php">Home</a></li>
+                <li><a href="../Firdaus/booking.php">Booking Appointment</a></li>
+                <li><a href="../Firdaus/mybooking.php">Your Appointment</a></li>
+                <li><a href="../Firdaus/aboutForPatient.php">About Us</a></li>
+                <li><a href="informationHubForPatient.php" class="active">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -49,13 +49,11 @@ $conn->close();
             <h1>My Projects</h1>
             <div class="project-grid">
                 <article class="project-card">
-                    <img src="DPCM.png" alt="Project 1 screenshot">
                     <h2>Project 1: DPCM SYSTEM </h2>
                     <p>The Dengue Prevention and Control in Malaysia (DPCM) plans to create an interactive platform to educate and raise awareness about dengue, integrating real-time situations, educational resources, and community engagement features.</p>
                     <a href="project1.pdf" class="project-link">View Project</a>
                 </article>
                 <article class="project-card">
-                    <img src="CFN.png" alt="Project 2 screenshot">
                     <h2>Project 2: Cancer Fighter Network</h2>
                     <p>The project focuses on creating "Cancer Fighter Network," an online platform for cancer patients and their families.The platform allows donations to cancer societies, offers an appointment scheduling system, and provides cancer-related information. It aims to increase access to quality healthcare services and empower individuals to make informed health decisions.</p>
                     <a href="project2.pdf" class="project-link">View Project</a>
@@ -71,6 +69,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

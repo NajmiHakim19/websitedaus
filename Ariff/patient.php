@@ -18,7 +18,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header class="nav-container">
@@ -28,10 +28,10 @@ $conn->close();
             <ul class="nav-links">
                 <li><a href="logout.php">Logout</a></li>
                 <li><a href="patient.php" class="active">Home</a></li>
-                <li><a href="Firdaus/booking.php">Booking Appointment</a></li>
-                <li><a href="mybooking.php">Your Appointment</a></li>
-                <li><a href="aboutForPatient.php">About Us</a></li>
-                <li><a href="informationHubForPatient.php">Information Hub</a></li>
+                <li><a href="../Firdaus/booking.php">Booking Appointment</a></li>
+                <li><a href="../Firdaus/mybooking.php">Your Appointment</a></li>
+                <li><a href="../Firdaus/aboutForPatient.php">About Us</a></li>
+                <li><a href="../Nik/informationHubForPatient.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -47,6 +47,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub LINK</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

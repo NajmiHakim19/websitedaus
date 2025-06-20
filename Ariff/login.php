@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: patient.php");
             exit();
         } elseif ($row['userType'] === 'doctor') {
-            header("Location: doctor.php");
+            header("Location: ../Firdaus/doctor.php");
             exit();
         } elseif ($row['userType'] === 'admin') {
-            header("Location: admin.php");
+            header("Location: ../Amin/admin.php");
             exit();
         } else {
             $login_message = "Unknown user type.";
@@ -83,19 +83,18 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header class="nav-container">
         <div class="logo">CANCER INFORMATION AND SUPPORT</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="register.php">Register</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About us</a></li>
-                <li><a href="informationHub.php">information Hub</a></li>
-            </ul>
+                <li><a href="login.php" class="active" >Login</a></li>
+                <li><a href="register.php" >Register</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../Nik/about.php">About Me</a></li>
+                <li><a href="../Nik/informationHub.php">Information Hub</a></li>
             <div class="hamburger">☰</div>
         </nav>
     </header>
@@ -125,6 +124,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

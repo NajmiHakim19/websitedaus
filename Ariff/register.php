@@ -1,7 +1,7 @@
 <?php
 
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -101,18 +101,18 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Register - Guest</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header class="nav-container">
         <div class="logo">CANCER INFORMATION AND SUPPORT</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php" class="active">Register</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="informationHub.php">Information Hub</a></li>
+                <li><a href="login.php" >Login</a></li>
+                <li><a href="register.php" class="active" >Register</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../Nik/about.php">About Me</a></li>
+                <li><a href="../Nik/informationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -163,6 +163,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank">GitHub LINK</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

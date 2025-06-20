@@ -11,7 +11,7 @@
     <title>About US</title>
 
     <!--CSS FILE LINK-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
@@ -20,9 +20,9 @@
         <nav class="nav-container">
             <div class="logo">CANCER INFORMATION AND SUPPORT</div>
             <ul class="nav-links">
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../Ariff/login.php">Login</a></li>
+                <li><a href="../Ariff/register.php">Register</a></li>
+                <li><a href="../index.php">Home</a></li>
                 <li><a href="about.php" class="active">About us</a></li>
                 <li><a href="informationHub.php">Information Hub</a></li>
             </ul>
@@ -47,6 +47,6 @@
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub Link</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

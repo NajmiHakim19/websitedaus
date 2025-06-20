@@ -1,7 +1,7 @@
 
 <?php
 // Database connection
-require_once "db_connect.php";
+require_once "../db_connect.php";
 session_start();
 $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
@@ -23,7 +23,7 @@ $conn->close();
     <title>About Us- For patient</title>
 
     <!--CSS FILE LINK-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
@@ -59,6 +59,6 @@ $conn->close();
             <a href="https://github.com/leecinsiak" target="_blank" aria-label="GitHub Profile">GitHub Link</a>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

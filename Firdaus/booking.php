@@ -63,12 +63,12 @@ $conn->close();
 </div>
     <nav>
         <ul class="nav-links">
-            <li><a href="logout.php">Logout</a></li>
-            <li><a href="patient.php">Home</a></li>
+            <li><a href="../Ariff/logout.php">Logout</a></li>
+            <li><a href="../Ariff/patient.php">Home</a></li>
             <li><a href="booking.php" class="active">Booking Appointment</a></li>
             <li><a href="mybooking.php">Your Appointment</a></li>
             <li><a href="aboutForPatient.php">About us</a></li>
-            <li><a href="InformationForPatient.php">Information Hub</a></li>
+            <li><a href="../Nik/InformationHubForPatient.php">Information Hub</a></li>
         </ul>
         <div class="hamburger">☰</div>
     </nav>
