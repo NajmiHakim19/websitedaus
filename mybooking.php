@@ -68,6 +68,7 @@ $conn->close();
                 <li><a href="patient.php">Home</a></li>
                 <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php" class="active">Your Appointment</a></li>
+                <li><a href="aboutForPatient.php">About Us</a></li>
                 <li><a href="InformationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
@@ -76,6 +77,7 @@ $conn->close();
 
     <section id="home" class="hero">
         <h1>Patient Dashboard</h1>
+        <p>Below are your list of appointment</p>
 
         <!-- Table displaying appointments -->
         <?php if (!empty($appointments)): ?>
@@ -88,6 +90,7 @@ $conn->close();
             <th>Date</th>
             <th>Time</th>
             <th>Purpose</th>
+            <th>Phone No</th>
             <th>Assign Doctor</th> <!-- New column -->
         </tr>
     </thead>
@@ -119,6 +122,7 @@ $conn->close();
             <td><?php echo htmlspecialchars($appointment['date']); ?></td>
             <td><?php echo htmlspecialchars($appointment['time']); ?></td>
             <td><?php echo htmlspecialchars($appointment['concern']); ?></td>
+            <td><?php echo htmlspecialchars($appointment['phone']); ?></td>
             <td><?php echo htmlspecialchars($doctorName); ?></td>
         </form>
     </tr>

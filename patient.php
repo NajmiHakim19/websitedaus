@@ -43,11 +43,11 @@ $conn->close();
         <nav>
             <ul class="nav-links">
                 <li><a href="logout.php">Logout</a></li>
-                <li><a href="index.php" class="active">Home</a></li>
+                <li><a href="patient.php" class="active">Home</a></li>
                 <li><a href="booking.php">Booking Appointment</a></li>
                 <li><a href="mybooking.php">Your Appointment</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="informationHub.php">information Hub</a></li>
+                <li><a href="aboutForPatient.php">About Us</a></li>
+                <li><a href="informationHubForPatient.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>

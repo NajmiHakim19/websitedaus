@@ -35,11 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $conn->real_escape_string($_POST['fullname']);
     $icnumber = $conn->real_escape_string($_POST['icnumber']);
     $phone = $conn->real_escape_string($_POST['phone']);
-    $email = $conn->real_escape_string($_POST['email'] ?? '');
-    $specialty = $conn->real_escape_string($_POST['specialty'] ?? '');
 
-    $sql = "INSERT INTO appointment_bookings (doctor, specialty, concern, date, time, salutation, fullname, icnumber, phone)
-            VALUES ('$doctor', '$specialty', '$concern', '$date', '$time', '$salutation', '$fullname', '$icnumber', '$phone')";
+    $sql = "INSERT INTO appointment_bookings (doctor, concern, date, time, salutation, fullname, icnumber, phone)
+            VALUES ('$doctor', '$concern', '$date', '$time', '$salutation', '$fullname', '$icnumber', '$phone')";
 
     if ($conn->query($sql) === TRUE) {
         $submission_message = "Your appointment request has been received. Our team will contact you to confirm the date and time.";
@@ -69,8 +67,8 @@ $conn->close();
             <li><a href="patient.php">Home</a></li>
             <li><a href="booking.php" class="active">Booking Appointment</a></li>
             <li><a href="mybooking.php">Your Appointment</a></li>
-            <li><a href="about.php">About us</a></li>
-            <li><a href="Information.php">Information Hub</a></li>
+            <li><a href="aboutForPatient.php">About us</a></li>
+            <li><a href="InformationForPatient.php">Information Hub</a></li>
         </ul>
         <div class="hamburger">☰</div>
     </nav>

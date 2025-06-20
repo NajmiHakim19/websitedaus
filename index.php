@@ -40,8 +40,8 @@ $conn->close();
         <nav>
             <ul class="nav-links">
                 <li><a href="login.php">Login</a></li>
-                <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="register.php">Register</a></li>
+                <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="about.php">About us</a></li>
                 <li><a href="informationHub.php">Information Hub</a></li>
             </ul>

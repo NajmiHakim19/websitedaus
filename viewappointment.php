@@ -64,7 +64,7 @@ $conn->close();
                 <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="login.php" class="active">Login</a></li>
                 <li><a href="booking.php" class="active">Booking Appointment</a></li>
-                <li><a href="mybooking.php" class="active">Your Appointment</a></li>
+                <li><a href="mybooking.php" class="active">View Appointment</a></li>
                 <li><a href="about.php">About Me</a></li>
                 <li><a href="projects.php">Projects</a></li>
             </ul>

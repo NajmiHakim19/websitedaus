@@ -91,8 +91,8 @@ $conn->close();
         <nav>
             <ul class="nav-links">
                 <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="index.php">Home</a></li>
                 <li><a href="register.php">Register</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About us</a></li>
                 <li><a href="informationHub.php">information Hub</a></li>
             </ul>

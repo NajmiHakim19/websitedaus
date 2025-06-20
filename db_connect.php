@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$db_user = "web40";  // or "root" depending on environment
-$db_pass = "web40";  // empty string "" for root usually
+$db_user = "root";  // or "root" depending on environment
+$db_pass = "";  // empty string "" for root usually
 $db_name = "daus";
 
 // Create connection

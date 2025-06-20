@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<pre>DEBUG: Prepare error on appointment_bookings update: " . $conn->error . "</pre>";
                 }
 
-                header("Location: viewappointment.php?message=Doctor assigned or updated");
+                header("Location: admin.php?assigned=success");
                 exit();
             } else {
                 echo "<pre>DEBUG: Execute error: " . $stmt->error . "</pre>";

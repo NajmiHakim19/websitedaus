@@ -20,6 +20,8 @@
         <nav class="nav-container">
             <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
             <ul class="nav-links">
+                <li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php" class="active">About us</a></li>
                 <li><a href="informationHub.php">Information Hub</a></li>

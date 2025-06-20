@@ -9,10 +9,9 @@ if (!isset($_SESSION['username']) || $_SESSION['userType'] !== 'doctor') {
     exit();
 }
 
-// Assuming doctor_name in DB is stored as: "Dr. Aisyah", "Dr. Firdaus", etc.
+// Assuming doctor_name in DB is stored as: "Dr. Firdaus", etc.
 $doctorUsername = $_SESSION['username'];
 $doctorNameMap = [
-    'aisyah' => 'Dr. Aisyah',
     'daus'   => 'Dr. Firdaus'
 ];
 $doctorName = $doctorNameMap[$doctorUsername] ?? '';
@@ -54,16 +53,31 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <header class="nav-container">
-        <div class="logo">Hi Dr. <?php echo htmlspecialchars($firstname) ?></div>
+        <div class="logo">Hi <?php echo htmlspecialchars($doctorName) ?></div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="login.php" class="active">Login</a></li>
-                <li><a href="about.php">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="logout.php">Logout</a></li>
+                
+
+        
             </ul>
             <div class="hamburger">☰</div>
         </nav>
@@ -85,6 +99,7 @@ $conn->close();
                         <th>Time</th>
                         <th>Purpose</th>
                         <th>Assigned At</th>
+                        <th>Phone No</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -98,6 +113,22 @@ $conn->close();
                             <td><?php echo htmlspecialchars($app['time']); ?></td>
                             <td><?php echo htmlspecialchars($app['concern']); ?></td>
                             <td><?php echo htmlspecialchars($app['assigned_at']); ?></td>
+                            <?php
+                             $phone = '';
+                             $conn2 = new mysqli("localhost", "root", "", "daus");
+                             if (!$conn2->connect_error) {
+                             $stmt2 = $conn2->prepare("SELECT phone FROM appointment_bookings WHERE id = ?");
+                             $stmt2->bind_param("i", $app['id']);
+                             $stmt2->execute();
+                             $stmt2->bind_result($fetchedPhone);
+                             if ($stmt2->fetch()) {
+                              $phone = $fetchedPhone;
+                                                      }
+                                     $stmt2->close();
+                                     $conn2->close();
+                                                                            }
+?>
+<td><?php echo htmlspecialchars($phone ?: 'N/A'); ?></td>
                             <td><?php echo htmlspecialchars($app['status']); ?></td>
                             <td>
                                 <form method="POST" action="update_status.php" style="display:inline;">
@@ -109,10 +140,6 @@ $conn->close();
                                     <button type="submit" name="update">Update</button>
                                 </form>
                                 
-                                <form method="POST" action="delete_appointment.php" onsubmit="return confirm('Are you sure to delete this assignment?');" style="display:inline;">
-                                    <input type="hidden" name="appointment_id" value="<?php echo $app['id']; ?>">
-                                    <button type="submit" name="delete">Delete</button>
-                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>

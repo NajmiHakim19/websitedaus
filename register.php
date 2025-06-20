@@ -1,7 +1,7 @@
 <?php
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "daus"); // uses "users" DB
+require_once "db_connect.php";
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -108,11 +108,11 @@ $conn->close();
         <div class="logo">MUHAMMAD FIRDAUS BIN MD SHAHRUNNAHAR</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="index.php">Login</a></li>
+                <li><a href="login.php">Login</a></li>
                 <li><a href="register.php" class="active">Register</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About Me</a></li>
-                <li><a href="projects.php">Projects</a></li>
+                <li><a href="informationHub.php">Information Hub</a></li>
             </ul>
             <div class="hamburger">☰</div>
         </nav>
