@@ -1,25 +1,21 @@
 <?php
 session_start();
+
 $firstname = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : "Guest";
 
-// Example: Assume NRIC is stored in session after login
 if (!isset($_SESSION['icnumber'])) {
-    // Redirect if not logged in
     header("Location: login.php");
     exit();
 }
 
 $currentUserNric = $_SESSION['icnumber'];
 
-// Database connection
 require_once "db_connect.php";
-
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get only this user's appointments
+// Get appointments for the current user
 $appointments = [];
 $stmt = $conn->prepare("SELECT * FROM appointment_bookings WHERE icnumber = ? ORDER BY id DESC");
 $stmt->bind_param("s", $currentUserNric);
@@ -30,10 +26,19 @@ if ($result && $result->num_rows > 0) {
     $appointments = $result->fetch_all(MYSQLI_ASSOC);
 }
 
-$stmt->close();
+// Prepare doctor assignments in one go for performance
+$doctorMap = [];
+if (!empty($appointments)) {
+    $ids = implode(',', array_column($appointments, 'id'));
+    $sql = "SELECT appointment_id, doctor_name FROM assign_doctor WHERE appointment_id IN ($ids)";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $doctorMap[$row['appointment_id']] = $row['doctor_name'];
+    }
+}
+
 $conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +65,7 @@ $conn->close();
 </head>
 <body>
     <header class="nav-container">
-    <div class="logo">
-    Hi <?php echo htmlspecialchars($firstname); ?></div>
+        <div class="logo">Hi <?php echo htmlspecialchars($firstname); ?></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="logout.php">Logout</a></li>
@@ -77,67 +81,39 @@ $conn->close();
 
     <section id="home" class="hero">
         <h1>Patient Dashboard</h1>
-        <p>Below are your list of appointment</p>
+        <p>Below are your list of appointments:</p>
 
-        <!-- Table displaying appointments -->
         <?php if (!empty($appointments)): ?>
             <table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>NRIC</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Purpose</th>
-            <th>Phone No</th>
-            <th>Assign Doctor</th> <!-- New column -->
-        </tr>
-    </thead>
-    <tbody>
-<?php foreach ($appointments as $appointment): ?>
-    <?php
-        // For each appointment, fetch assigned doctor
-        $doctorName = '-';
-        $appointmentId = $appointment['id'];
-
-        $conn = new mysqli("localhost", "root", "", "daus");
-        if (!$conn->connect_error) {
-            $stmt = $conn->prepare("SELECT doctor_name FROM assign_doctor WHERE appointment_id = ? ORDER BY id DESC LIMIT 1");
-            $stmt->bind_param("i", $appointmentId);
-            $stmt->execute();
-            $stmt->bind_result($doctorResult);
-            if ($stmt->fetch()) {
-                $doctorName = $doctorResult;
-            }
-            $stmt->close();
-            $conn->close();
-        }
-    ?>
-    <tr>
-        <form action="assign_doctor.php" method="POST">
-            <td><?php echo htmlspecialchars($appointment['id']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['date']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['time']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['concern']); ?></td>
-            <td><?php echo htmlspecialchars($appointment['phone']); ?></td>
-            <td><?php echo htmlspecialchars($doctorName); ?></td>
-        </form>
-    </tr>
-<?php endforeach; ?>
-</tbody>
-
-
-</table>
-
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>NRIC</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Purpose</th>
+                        <th>Phone No</th>
+                        <th>Assign Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($appointments as $appointment): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($appointment['id']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['fullname']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['icnumber']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['date']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['time']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['concern']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['phone']); ?></td>
+                            <td><?php echo htmlspecialchars($doctorMap[$appointment['id']] ?? '-'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         <?php else: ?>
             <p>No appointments found.</p>
-        <?php endif; ?>
-
-        <?php if (!empty($submission_message)): ?>
-            <p class="submission-message"><?php echo $submission_message; ?></p>
         <?php endif; ?>
     </section>
 
